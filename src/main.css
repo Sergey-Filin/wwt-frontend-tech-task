@@ -1,2 +1,53 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
+
+/* Design tokens from the Figma layout */
+@theme {
+	--font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+	--color-primary: #ff5f00;
+	--color-primary-hover: #e65600;
+	--color-link: #078691;
+	--color-ink: #31393c;
+	--color-muted: #474747;
+	--color-line: #b4b4b4;
+	--color-overlay: #1b1b1b;
+}
+
+/* Reserve scrollbar space, so locking scroll does not shift the page */
+html {
+	scrollbar-gutter: stable;
+}
+
+/* Lock page scroll while any modal is open */
+html:has(dialog[open]) {
+	overflow: hidden;
+}
+
+/* Checkbox from the design: 20px box, 2px border, orange when checked */
+@utility checkbox {
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	margin: 2px;
+	flex-shrink: 0;
+	border: 2px solid var(--color-ink);
+	border-radius: 2px;
+	background-color: #fff;
+	background-position: center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	transition:
+		background-color 150ms,
+		border-color 150ms;
+
+	&:checked {
+		border-color: var(--color-primary);
+		background-color: var(--color-primary);
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E");
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--color-primary);
+		outline-offset: 2px;
+	}
+}
