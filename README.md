@@ -1,5 +1,7 @@
 # WinWinTravel
 
+Implementation notes, decisions and the reason for each added dependency: [DECISIONS.md](./DECISIONS.md)
+
 ## Task
 
 ### What needs to be done
@@ -90,4 +92,12 @@ Also, to see how the compiled version of the program looks, you can use the scri
 
 ```shell
 npm run preview
+```
+
+### Tests
+
+```shell
+pnpm test:ci   # unit and integration tests (vitest)
+pnpm exec playwright install chromium   # once, downloads the browser
+pnpm test:e2e  # e2e tests (Playwright) against the production build
 ```
