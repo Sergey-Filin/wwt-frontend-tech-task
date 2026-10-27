@@ -64,8 +64,8 @@
 	},
 	"lint-staged": {
 		"*.{ts,tsx}": [
-			"npm run format:file",
-			"npm run lint:file"
+			"prettier --log-level warn --write",
+			"eslint --report-unused-disable-directives --max-warnings 0"
 		]
 	}
 }
