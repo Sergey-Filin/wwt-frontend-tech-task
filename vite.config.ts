@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react-swc'
 import { defineConfig } from 'vite'
 import svgr from 'vite-plugin-svgr'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import { configDefaults } from 'vitest/config'
 
 export default defineConfig(() => ({
 	root: '.',
@@ -31,6 +32,8 @@ export default defineConfig(() => ({
 		globals: true,
 		environment: 'jsdom',
 		setupFiles: ['setupTest.ts'],
+		// Playwright specs run with their own runner
+		exclude: [...configDefaults.exclude, 'e2e/**'],
 		coverage: {
 			provider: 'istanbul'
 		}
