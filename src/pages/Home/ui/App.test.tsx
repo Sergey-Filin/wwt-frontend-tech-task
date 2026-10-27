@@ -7,6 +7,7 @@ import {
 	screen,
 	within
 } from '@testing-library/react'
+import i18n from 'i18next'
 import { afterEach, beforeAll, beforeEach, describe, expect, it } from 'vitest'
 
 import { FilterType } from '@/shared/api/types/Filter'
@@ -56,7 +57,10 @@ beforeAll(() => {
 })
 
 beforeEach(() => useFilterStore.setState({ selectedFilters: [] }))
-afterEach(cleanup)
+afterEach(async () => {
+	cleanup()
+	await i18n.changeLanguage('en')
+})
 
 describe('filter modal flow', () => {
 	it('applies selection only after confirmation and pre-fills on reopen', async () => {
@@ -196,5 +200,26 @@ describe('filter modal flow', () => {
 		)
 
 		expect(checkbox).not.toBeChecked()
+	})
+})
+
+describe('language switch', () => {
+	it('translates the page and the modal', async () => {
+		renderApp()
+
+		await act(() =>
+			fireEvent.change(screen.getByRole('combobox', { name: 'Language' }), {
+				target: { value: 'uk' }
+			})
+		)
+
+		expect(document.documentElement).toHaveAttribute('lang', 'uk')
+		fireEvent.click(screen.getByRole('button', { name: 'Відкрити фільтри' }))
+
+		const modal = screen.getByRole('dialog', { name: 'Фільтр' })
+
+		expect(
+			within(modal).getByRole('button', { name: 'Застосувати' })
+		).toBeInTheDocument()
 	})
 })

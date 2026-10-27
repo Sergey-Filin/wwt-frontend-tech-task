@@ -2,6 +2,7 @@ import { useId, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { FilterModal } from '@/features/filter'
+import { LanguageSelect } from '@/features/language'
 import { usePrefetchFilters } from '@/shared/api/filters'
 import { useFilterStore } from '@/shared/store/filterStore'
 import { Button } from '@/shared/ui/Button'
@@ -16,6 +17,10 @@ export const App = () => {
 
 	return (
 		<main className="mx-auto flex min-h-dvh w-full max-w-5xl flex-col items-center gap-10 px-4 py-16">
+			<div className="self-end">
+				<LanguageSelect />
+			</div>
+
 			<h1 className="text-center text-4xl text-gray-600 md:text-6xl">
 				{t('title')}
 			</h1>

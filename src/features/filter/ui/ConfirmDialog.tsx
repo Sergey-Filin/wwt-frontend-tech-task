@@ -44,13 +44,13 @@ export const ConfirmDialog = ({
 					<Button
 						variant="outline"
 						onClick={onDecline}
-						className="w-full sm:w-[280px]"
+						className="w-full sm:w-auto sm:min-w-[280px]"
 					>
 						{t('confirm.useOld')}
 					</Button>
 					<Button
 						onClick={onConfirm}
-						className="w-full sm:w-[280px]"
+						className="w-full sm:w-auto sm:min-w-[280px]"
 					>
 						{t('confirm.applyNew')}
 					</Button>

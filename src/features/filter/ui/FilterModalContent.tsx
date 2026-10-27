@@ -131,7 +131,7 @@ export const FilterModalContent = ({
 					type="submit"
 					form={formId}
 					disabled={isPending || isError}
-					className="w-full justify-self-center sm:col-start-2 sm:w-[184px]"
+					className="w-full justify-self-center sm:col-start-2 sm:w-auto sm:min-w-[184px]"
 				>
 					{t('apply')}
 				</Button>
